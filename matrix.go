@@ -50,6 +50,9 @@ type MatrixRO interface {
 
 	DenseMatrix() *DenseMatrix
 	SparseMatrix() *SparseMatrix
+	
+	//Get the underlying data as an array/slice
+	Array() []float64
 }
 
 /*

@@ -315,3 +315,10 @@ func (A *SparseMatrix) SparseMatrix() *SparseMatrix {
 }
 
 func (A *SparseMatrix) String() string { return String(A) }
+
+/*
+Implement Array method
+*/
+func (A *SparseMatrix) Array() []float64 {
+	return A.DenseMatrix().Array()
+}

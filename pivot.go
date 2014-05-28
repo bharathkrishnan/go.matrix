@@ -67,3 +67,10 @@ func MakePivotMatrix(pivots []int, pivotSign float64) *PivotMatrix {
 }
 
 func (A *PivotMatrix) String() string { return String(A) }
+
+/*
+Implement Array method
+*/
+func (A *PivotMatrix) Array() []float64 {
+	return A.DenseMatrix().Array()
+}
