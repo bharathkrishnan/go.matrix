@@ -152,6 +152,26 @@ func (A *SparseMatrix) GetRowVector(i int) *SparseMatrix {
 }
 
 /*
+Gets a materialized copy of a row vector
+GetRowVector seems buggy and doesn't work correctly when used in arithmetic operations
+*/
+func (A *SparseMatrix) GetRowSlice(i int) *SparseMatrix {
+	RS := new(SparseMatrix)
+	RS.rows = 1
+	RS.cols = A.cols
+	RS.offset = 0
+	RS.step = A.cols
+	RS.elements = map[int]float64{}
+	for j := 0; j < A.cols; j++ {
+		elem := A.Get(i,j)
+		if elem != 0.0 {
+			RS.elements[j] = elem
+		}
+	}
+	return RS
+}
+
+/*
 Creates a new matrix [A B].
 */
 func (A *SparseMatrix) Augment(B *SparseMatrix) (*SparseMatrix, error) {
