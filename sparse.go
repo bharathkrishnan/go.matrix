@@ -255,6 +255,21 @@ func NormalsSparse(rows int, cols int, n int) *SparseMatrix {
 }
 
 /*
+Creates a matrix and puts a 1 in n random elements, with replacement.
+*/
+func BinarySparse(rows int, cols int, n int) *SparseMatrix {
+	A := ZerosSparse(rows, cols)
+	for k := 0; k < n; k++ {
+		i := rand.Intn(rows)
+		j := rand.Intn(cols)
+		if rand.NormFloat64() > 0.5 {
+			A.Set(i, j, 1.0)
+		}
+	}
+	return A
+}
+
+/*
 Create a sparse matrix using the provided map as its backing.
 */
 func MakeSparseMatrix(elements map[int]float64, rows int, cols int) *SparseMatrix {
